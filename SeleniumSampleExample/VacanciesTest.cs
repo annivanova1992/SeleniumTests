@@ -15,11 +15,12 @@ namespace SeleniumSampleExample
 
         private const int Timeout = 10;
 
-        private ChromeDriver driver;
+        private static ChromeDriver driver;
 
-        public VacanciesTest()
+        [ClassInitialize]
+        public static void Setup(TestContext context)
         {
-            this.driver = new ChromeDriver();
+            driver = new ChromeDriver();
             driver.Url = "https://careers.veeam.com/";
         }
 
@@ -55,12 +56,12 @@ namespace SeleniumSampleExample
             }
 
             Assert.AreEqual(ExpectedVacancyNumber, total);
-
-            TearDown();
         }
-        private void TearDown()
+
+        [ClassCleanup]
+        public static void TearDown()
         {
-            this.driver.Close();
+            driver.Close();
         }
     }
 }

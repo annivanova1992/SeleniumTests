@@ -49,8 +49,6 @@ namespace SeleniumSampleExample
                 allJobsButton.Click();
                 wait = new WebDriverWait(driver, TimeSpan.FromSeconds(Timeout));
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector(".animate.vacancies-blocks-item")));
-                //vacanciesContainer = wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id=\"hp\"]/section[3]/div/div[1]/div[3]")));
-                //wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
                 vacanciesContainer = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id=\"hp\"]/section[3]/div/div[1]/div[3]")));
                 var additionalVacancies = vacanciesContainer.FindElements(By.ClassName(classname));
                 total += additionalVacancies.Count;

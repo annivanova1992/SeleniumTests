@@ -25,7 +25,7 @@ namespace SeleniumSampleExample
         }
 
         [TestMethod]
-        public void Nubmer_Of_Vacancies_Should_Be_Correct()
+        public void Number_Of_Vacancies_Should_Be_Correct()
         {
             var classname = "vacancies-blocks-col";
 
@@ -35,8 +35,6 @@ namespace SeleniumSampleExample
             var countryList = driver.FindElement(By.XPath("//*[@id=\"country-element\"]/div/div/div[2]"));
             var value = countryList.FindElement(By.XPath($"span[text()='{Country}']"));
             value.Click();
-
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(Timeout);
 
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(Timeout));
             wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector(".animate.vacancies-blocks-item")));
@@ -48,7 +46,6 @@ namespace SeleniumSampleExample
             if (allJobsButton.Displayed)
             {
                 allJobsButton.Click();
-                wait = new WebDriverWait(driver, TimeSpan.FromSeconds(Timeout));
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector(".animate.vacancies-blocks-item")));
                 vacanciesContainer = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id=\"hp\"]/section[3]/div/div[1]/div[3]")));
                 var additionalVacancies = vacanciesContainer.FindElements(By.ClassName(classname));
@@ -62,6 +59,7 @@ namespace SeleniumSampleExample
         public static void TearDown()
         {
             driver.Close();
+            driver.Quit();
         }
     }
 }

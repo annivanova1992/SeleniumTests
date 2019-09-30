@@ -42,7 +42,7 @@ namespace SeleniumSampleExample
             var vacancies = vacanciesContainer.FindElements(By.ClassName(classname));
             var total = vacancies.Count;
 
-            var allJobsButton = driver.FindElement(By.XPath("//*[@id=\"index-vacancies-buttons\"]/div/a"));
+            var allJobsButton = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id=\"index-vacancies-buttons\"]/div/a")));
             if (allJobsButton.Displayed)
             {
                 allJobsButton.Click();

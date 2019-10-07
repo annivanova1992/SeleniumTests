@@ -11,9 +11,9 @@ namespace SeleniumSampleExample
     public class VacanciesTest
     {
         private const string Country = "Romania";
-        private const int ExpectedVacancyNumber = 33;
+        private const int ExpectedVacancyNumber = 34;
 
-        private const int Timeout = 10;
+        private const int Timeout = 5;
 
         private static ChromeDriver driver;
 
@@ -42,7 +42,7 @@ namespace SeleniumSampleExample
             var vacancies = vacanciesContainer.FindElements(By.ClassName(classname));
             var total = vacancies.Count;
 
-            var allJobsButton = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id=\"index-vacancies-buttons\"]/div/a")));
+            var allJobsButton = driver.FindElement(By.XPath("//*[@id=\"index-vacancies-buttons\"]/div/a"));
             if (allJobsButton.Displayed)
             {
                 allJobsButton.Click();
